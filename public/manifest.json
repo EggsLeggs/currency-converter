@@ -1,7 +1,7 @@
 {
-	"name": "Rice Bowl",
-	"short_name": "Rice Bowl",
-	"description": "Fluffless jasmine rice for those cold winter nights",
+	"name": "Simple Currency Converter",
+	"short_name": "Currency Converter",
+	"description": "A simple currency converter for your daily needs.",
 	"icons": [
 		{
 			"src": "/images/icon-192.png",

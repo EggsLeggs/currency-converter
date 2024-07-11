@@ -51,6 +51,7 @@ export const Converter = () => {
             {code(currencyOne)?.currency || currencyOne} to {code(currencyTwo)?.currency || currencyTwo} Converter
         </h2>
         <div className='grid grid-cols-2 gap-4'>
+            {/* TODO focus on this input when page loads */}
             <CurrencyInput value={currencyOneValue} currency={code(currencyOne)?.currency || currencyOne} currencySymbol={currencyOne} onChange={onChangeCurrencyOne}/>
             <CurrencyInput value={currencyTwoValue} currency={code(currencyTwo)?.currency || currencyTwo} currencySymbol={currencyTwo} onChange={onChangeCurrencyTwo}/>
         </div>

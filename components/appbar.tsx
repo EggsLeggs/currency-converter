@@ -9,7 +9,7 @@ const Appbar = () => {
 			<header className='border-b px-safe dark:border-zinc-800'>
 				<div className='mx-auto flex h-20 max-w-screen-md items-center justify-between px-6'>
 					<Link href='/'>
-						<h1 className='font-medium'>Currency Converter Tool</h1>
+						<h1 className='font-medium'>Simple Currency Converter</h1>
 					</Link>
 
 					<nav className='flex items-center space-x-6'>

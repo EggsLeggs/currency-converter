@@ -22,6 +22,7 @@ interface BearState {
     currencyTwoRates: Record<string, CurrencyRate> | null
     setCurrencyTwoRates: (currencyTwoRates: Record<string, CurrencyRate>) => void
     currencyTwo: string
+    setCurrencyTwo: (by: string) => void
     validCurrencies: string[]
     setValidCurrencies: (by: string[]) => void
 }
@@ -40,6 +41,7 @@ export const useConversionRateStore = create<BearState>()(
                 currencyTwoRates: null,
                 setCurrencyTwoRates: (by) => set(() => ({ currencyTwoRates: by })),
                 currencyTwo: 'GBP',
+                setCurrencyTwo: (by) => set(() => ({ currencyTwo: by })),
                 validCurrencies: [],
                 setValidCurrencies: (by) => set(() => ({ validCurrencies: by }))
 			}),
