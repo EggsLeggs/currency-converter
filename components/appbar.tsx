@@ -5,7 +5,7 @@ import { SelectCurrencyButton } from './selectCurrencyButton'
 const Appbar = () => {
 
 	return (
-		<div className='fixed top-0 left-0 z-20 w-full pt-safe'>
+		<div className='fixed top-0 left-0 z-20 w-full pt-safe bg-background'>
 			<header className='border-b px-safe dark:border-zinc-800'>
 				<div className='mx-auto flex h-20 max-w-screen-md items-center justify-between px-6'>
 					<Link href='/'>
