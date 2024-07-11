@@ -16,29 +16,29 @@ function isZeroValue(value: string) {
 
 export const CurrencyInput = ({ value, currency, currencySymbol, onChange }:currencyInputProps) => {
     return(
-        <div>
-        <span className='font-medium text-base'>
-            <span className='pr-1.5 text-[0.7rem]'>
-                {currencySymbol}
+        <div className="mt-auto">
+            <span className='font-medium text-base'>
+                <span className='pr-1.5 text-[0.7rem]'>
+                    {currencySymbol}
+                </span>
+                {currency}
             </span>
-            {currency}
-        </span>
-        <Input
-            min={0}
-            type='number'
-            value={isZeroValue(value.toString())? value.toString()[1]: value.toString()}
-            className='mt-0.5 font-medium text-base'
-            inputMode="numeric"
-            pattern='[0-9]*'
-            onChange={(e) => {
-                const value = parseFloat(e.target.value)
-                if (isNaN(value)) {
-                    onChange(0)
-                    return
-                }
-                onChange(value)
-            }}
-        />
-    </div>
+            <Input
+                min={0}
+                type='number'
+                value={isZeroValue(value.toString())? value.toString()[1]: value.toString()}
+                className='mt-0.5 font-medium text-base'
+                inputMode="numeric"
+                pattern='[0-9]*'
+                onChange={(e) => {
+                    const value = parseFloat(e.target.value)
+                    if (isNaN(value)) {
+                        onChange(0)
+                        return
+                    }
+                    onChange(value)
+                }}
+            />
+        </div>
     )
 }
