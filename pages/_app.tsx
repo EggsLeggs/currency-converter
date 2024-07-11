@@ -25,8 +25,9 @@ export default function App({ Component, pageProps }: AppProps) {
 					content='width=device-width, initial-scale=1, user-scalable=0, viewport-fit=cover'
 				/>
 
-				<title>Simple Currency Converter</title>
 				<link rel='icon' type='image/png' href='/images/favicon.png' />
+				<title>Simple Currency Converter</title>
+				<meta property="description" content="A simple currency converter for your daily needs. Convert euros, dollars, pounds, yen, won and many more." />
 				<meta
 					name='theme-color'
 					content='#18181b'
