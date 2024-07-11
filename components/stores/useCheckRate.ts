@@ -15,7 +15,7 @@ export const useCheckRate = () => {
 	} = useConversionRateStore()
 	const [isRatesLoading, setIsRatesLoading] = useState<boolean>(true)
 
-	const getCurrentYenPriceFromAPI = useCallback(async () => {
+	const getCurrencyOnePriceFromAPI = useCallback(async () => {
 		try {
 			const res = await fetch(`https://www.floatrates.com/daily/${currencyOne.toLowerCase()}.json`)
 			const rates: Record<string, CurrencyRate> = await res.json()
@@ -30,7 +30,7 @@ export const useCheckRate = () => {
 		}
 	}, [currencyTwo, currencyOne])
 
-	const updateYenRateFromCache = useCallback(() => {
+	const updateCurrencyOneRateFromCache = useCallback(() => {
 		if (!currencyOneRates) {
 			throw new Error('Could not find cache of localized rates')
 		}
@@ -41,13 +41,13 @@ export const useCheckRate = () => {
 	useEffect(() => {
 		const getRate = async () => {
 			setIsRatesLoading(true)
-
+			// TODO use cache if available
 			const isOutdated = isCacheOutdated(currencyOneRates, lastUpdated)
 
-			if (isOutdated) {
-				await getCurrentYenPriceFromAPI()
+			if (isOutdated || (currencyOneRates && Object.keys(currencyOneRates).includes(currencyOne.toLowerCase()))) {
+				await getCurrencyOnePriceFromAPI()
 			} else {
-				updateYenRateFromCache()
+				updateCurrencyOneRateFromCache()
 			}
 			setIsRatesLoading(false)
 		}

@@ -60,6 +60,7 @@ export const SelectCurrencyDialog = ({header, currentCurrency, setCurrency}:sele
                                 <DialogClose asChild>
                                     <Button
                                         onClick={() => {
+                                            setCountryQuery('')
                                             setCurrency(currency.toUpperCase())
                                         }}
                                         size='lg'
