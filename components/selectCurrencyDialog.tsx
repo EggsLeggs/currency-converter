@@ -23,7 +23,7 @@ export const SelectCurrencyDialog = ({header, currentCurrency, setCurrency}:sele
     // TODO: implement the ability to select money of the same currency, this will require a change in the store cause the api doesnt include the same currency in the list
     const unselectedCurrencies = validCurrencies.filter((currency) => currency.toUpperCase() !== currencyOne && currency.toUpperCase() !== currencyTwo)
     const filteredCurrencies = unselectedCurrencies.filter((currency) =>
-        code(currency)?.currency.toUpperCase().includes(countryQuery.toUpperCase()) || currency.includes(countryQuery.toUpperCase())
+        code(currency)?.currency.toUpperCase().includes(countryQuery.toUpperCase()) || currency.toUpperCase().includes(countryQuery.toUpperCase())
     )
 
 	const countryListContainer = React.useRef<HTMLDivElement | null>(null)
