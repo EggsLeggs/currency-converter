@@ -17,8 +17,9 @@ export const Converter = () => {
 
     const { isRatesLoading } = useCheckRate()
 
-    const [currencyOneValue, setCurrencyOneValue] = React.useState<number>(1)
-    const [currencyTwoValue, setCurrencyTwoValue] = React.useState<number>(parseFloat((1 * currencyOneRate).toFixed(2)))
+    const [currencyOneValue, setCurrencyOneValue] = React.useState<number | null>(1)
+    const [currencyTwoValue, setCurrencyTwoValue] = React.useState<number | null>(parseFloat((1 * currencyOneRate).toFixed(2)))
+    const [lastEdited, setLastEdited] = React.useState<'currencyOne' | 'currencyTwo'>('currencyOne')
 
     if (isRatesLoading) {
 		return (
@@ -30,17 +31,30 @@ export const Converter = () => {
 		)
 	}
 
-    const onChangeCurrencyOne = (value: number) => {
+    const onChangeCurrencyOne = (value: number | null) => {
+        setLastEdited('currencyOne')
+        if (value === null) {
+            setCurrencyOneValue(null)
+            setCurrencyTwoValue(null)
+            return
+        }
         setCurrencyOneValue(value)
         setCurrencyTwoValue(parseFloat((value * currencyOneRate).toFixed(2)))
     }
 
-    const onChangeCurrencyTwo = (value: number) => {
+    const onChangeCurrencyTwo = (value: number | null) => {
+        setLastEdited('currencyTwo')
+        if (value === null) {
+            setCurrencyTwoValue(null)
+            setCurrencyOneValue(null)
+            return
+        }
         setCurrencyTwoValue(value)
         setCurrencyOneValue(parseFloat((value / currencyOneRate).toFixed(2)))
     }
 
     const onClearConversion = () => {
+        setLastEdited('currencyOne')
         setCurrencyOneValue(0)
         setCurrencyTwoValue(0)
     }
@@ -52,8 +66,8 @@ export const Converter = () => {
         </h2>
         <div className='grid grid-cols-2 gap-4'>
             {/* TODO focus on this input when page loads */}
-            <CurrencyInput value={currencyOneValue} currency={code(currencyOne)?.currency || currencyOne} currencySymbol={currencyOne} onChange={onChangeCurrencyOne}/>
-            <CurrencyInput value={currencyTwoValue} currency={code(currencyTwo)?.currency || currencyTwo} currencySymbol={currencyTwo} onChange={onChangeCurrencyTwo}/>
+            <CurrencyInput value={currencyOneValue} currency={code(currencyOne)?.currency || currencyOne} currencySymbol={currencyOne} onChange={onChangeCurrencyOne} displayFixedDecimals={lastEdited === 'currencyTwo' ? 2 : undefined}/>
+            <CurrencyInput value={currencyTwoValue} currency={code(currencyTwo)?.currency || currencyTwo} currencySymbol={currencyTwo} onChange={onChangeCurrencyTwo} displayFixedDecimals={lastEdited === 'currencyOne' ? 2 : undefined}/>
         </div>
         <Button className='w-full text-base font-semibold' onClick={onClearConversion}>
             Clear

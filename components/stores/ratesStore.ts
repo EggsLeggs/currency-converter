@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { devtools, persist } from 'zustand/middleware'
+import { persist } from 'zustand/middleware'
 
 export interface CurrencyRate {
 	code: string
@@ -28,26 +28,24 @@ interface BearState {
 }
 
 export const useConversionRateStore = create<BearState>()(
-	devtools(
-		persist(
-			(set) => ({
-                lastUpdated: null,
-                currencyOneRate: 0.0048,
-                currencyOneRates: null,
-                setCurrencyOneRate: (by) => set(() => ({ currencyOneRate: by, lastUpdated: new Date().getTime() })),
-                setCurrencyOneRates: (by) => set(() => ({ currencyOneRates: by })),
-                currencyOne: 'JPY',
-                setCurrencyOne: (by) => set(() => ({ currencyOne: by })),
-                currencyTwoRates: null,
-                setCurrencyTwoRates: (by) => set(() => ({ currencyTwoRates: by })),
-                currencyTwo: 'GBP',
-                setCurrencyTwo: (by) => set(() => ({ currencyTwo: by })),
-                validCurrencies: [],
-                setValidCurrencies: (by) => set(() => ({ validCurrencies: by }))
-			}),
-			{
-				name: 'rate-storage',
-			},
-		),
+	persist(
+		(set) => ({
+            lastUpdated: null,
+            currencyOneRate: 0.0048,
+            currencyOneRates: null,
+            setCurrencyOneRate: (by) => set(() => ({ currencyOneRate: by, lastUpdated: new Date().getTime() })),
+            setCurrencyOneRates: (by) => set(() => ({ currencyOneRates: by })),
+            currencyOne: 'JPY',
+            setCurrencyOne: (by) => set(() => ({ currencyOne: by })),
+            currencyTwoRates: null,
+            setCurrencyTwoRates: (by) => set(() => ({ currencyTwoRates: by })),
+            currencyTwo: 'GBP',
+            setCurrencyTwo: (by) => set(() => ({ currencyTwo: by })),
+            validCurrencies: [],
+            setValidCurrencies: (by) => set(() => ({ validCurrencies: by }))
+		}),
+		{
+			name: 'rate-storage',
+		},
 	),
 )

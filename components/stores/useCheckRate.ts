@@ -51,7 +51,6 @@ export const useCheckRate = () => {
 			}
 			setIsRatesLoading(false)
 		}
-		console.log('test')
 		getRate()
 	}, [currencyTwo, currencyOne, currencyOneRates])
 

@@ -4,7 +4,6 @@ import localFont from 'next/font/local'
 import '@/styles/globals.css'
 import Head from 'next/head'
 import Appbar from '@/components/appbar'
-import { Analytics } from "@vercel/analytics/react"
 
 export const satoshi = localFont({
 	src: '../fonts/Satoshi-Variable.ttf',
@@ -63,7 +62,6 @@ export default function App({ Component, pageProps }: AppProps) {
 					</div>
 				</main>
 			</div>
-			<Analytics />
 		</ThemeProvider>
 	)
 }
