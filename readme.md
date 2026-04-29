@@ -38,7 +38,7 @@ To enable GitHub Pages for the repo:
 1. Go to **Settings > Pages**
 2. Set **Source** to **GitHub Actions**
 
-The live site will be available at `https://eggsleggs.github.io/currency-converter`.
+The live site will be available at `https://currency.amory.me/`.
 
 ## Tech stack
 
