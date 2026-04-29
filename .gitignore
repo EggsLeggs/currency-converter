@@ -10,3 +10,6 @@ node_modules
 **/public/sw**
 
 certificates
+
+# Not using pnpm
+pnpm-lock.yaml
