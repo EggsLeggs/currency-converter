@@ -10,11 +10,17 @@ type currencyInputProps = {
     onChange: (value: number) => void
 }
 
-function isZeroValue(value: string) {
-    return value.length === 2 && value[0] === '0' && value[1] !== '.'
-}
-
 export const CurrencyInput = ({ value, currency, currencySymbol, onChange }:currencyInputProps) => {
+    const [inputValue, setInputValue] = React.useState<string>(value.toString())
+
+    React.useEffect(() => {
+        // Only sync from parent if the numeric value changed externally (e.g. other input changed)
+        // Preserves in-progress strings like "10." or "10.0" while the user is still typing
+        if (parseFloat(inputValue) !== value) {
+            setInputValue(value.toString())
+        }
+    }, [value])
+
     return(
         <div className="mt-auto">
             <span className='font-medium text-base'>
@@ -26,17 +32,19 @@ export const CurrencyInput = ({ value, currency, currencySymbol, onChange }:curr
             <Input
                 min={0}
                 type='number'
-                value={isZeroValue(value.toString())? value.toString()[1]: value.toString()}
+                value={inputValue}
                 className='mt-0.5 font-medium text-base'
                 inputMode="numeric"
                 pattern='[0-9]*'
                 onChange={(e) => {
-                    const value = parseFloat(e.target.value)
-                    if (isNaN(value)) {
+                    const raw = e.target.value
+                    setInputValue(raw)
+                    const parsed = parseFloat(raw)
+                    if (isNaN(parsed)) {
                         onChange(0)
                         return
                     }
-                    onChange(value)
+                    onChange(parsed)
                 }}
             />
         </div>
